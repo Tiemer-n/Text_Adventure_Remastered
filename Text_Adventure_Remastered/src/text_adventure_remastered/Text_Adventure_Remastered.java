@@ -16,8 +16,8 @@ public class Text_Adventure_Remastered {
     
     
     public static void main(String[] args) {
-        Main main = new Main();
-        main.show();
+        Menu menu = new Menu();
+        menu.show();
     }
     
 }

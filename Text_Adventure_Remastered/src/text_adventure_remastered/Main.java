@@ -356,6 +356,7 @@ public class Main extends javax.swing.JFrame {
         for (int i = 0; i < 27; i++) {
             Output.append("‾‾‾‾");
         }
+        Output.append("\n");
 
         map[x][y] = "[@]";
     }
