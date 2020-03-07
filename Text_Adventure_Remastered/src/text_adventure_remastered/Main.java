@@ -1,4 +1,3 @@
-
 package text_adventure_remastered;
 
 import java.awt.Dimension;
@@ -22,12 +21,12 @@ public class Main extends javax.swing.JFrame {
     public static int MaxFood = 10;
     public int on = 1;
     public int answer;
-     public static BackPack pack = new BackPack(MaxFood,MaxWater,0,0,0,0,0,0,0,0);
-    
+    public static BackPack pack = new BackPack(MaxFood, MaxWater, 0, 0, 0, 0, 0, 0, 0, 0);
+
     public Main() {
         initComponents();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -53,6 +52,9 @@ public class Main extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -180,7 +182,7 @@ public class Main extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+            this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
             TextBox.setLineWrap(true);
             CreateLandmarks();
             CreateMap();
@@ -188,92 +190,89 @@ public class Main extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
+
     }//GEN-LAST:event_formWindowActivated
 
     private void upActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upActionPerformed
         if (Check(-1, 0) == 1) {
-                MovePlayer(-1, 0);
-                pack.setWater(pack.getWater()-1);
-                CreateMap();
-                CheckHealth();
-                WildernessAttack();
-                CheckFood();
+            MovePlayer(-1, 0);
+            pack.setWater(pack.getWater() - 1);
+            CreateMap();
+            CheckHealth();
+            WildernessAttack();
+            CheckFood();
+        } else if (Check(-1, 0) == 2) {
+            MovePlayer(-1, 0);
+            CreateMap();
+            CheckHealth();
+            pack.setWater(pack.getWater() - 1);
+            CheckFood();
+            runLandmark(LandMarkMap[x][y]);
         }
-        else if (Check(-1,0) == 2){
-                MovePlayer(-1, 0);   
-                CreateMap(); 
-                CheckHealth();
-                pack.setWater(pack.getWater()-1);
-                CheckFood();
-                runLandmark(LandMarkMap[x][y]);
-        }
-        
+
     }//GEN-LAST:event_upActionPerformed
 
     private void downActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downActionPerformed
-        
-        if( Check(1,0) == 1 ){
-                MovePlayer(1, 0);
-                pack.setWater(pack.getWater()-1);
-                CreateMap();
-                CheckHealth();
-                WildernessAttack();
-                CheckFood();
+
+        if (Check(1, 0) == 1) {
+            MovePlayer(1, 0);
+            pack.setWater(pack.getWater() - 1);
+            CreateMap();
+            CheckHealth();
+            WildernessAttack();
+            CheckFood();
+        } else if (Check(1, 0) == 2) {
+            MovePlayer(1, 0);
+            pack.setWater(pack.getWater() - 1);
+            CheckFood();
+            CreateMap();
+            CheckHealth();
+            runLandmark(LandMarkMap[x][y]);
         }
-        else if ( Check(1,0) == 2){
-                MovePlayer(1, 0);
-                pack.setWater(pack.getWater()-1);
-                CheckFood();
-                CreateMap();
-                CheckHealth();
-                runLandmark(LandMarkMap[x][y]);
-        }
-        
-        
+
+
     }//GEN-LAST:event_downActionPerformed
 
     private void leftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftActionPerformed
-        if( Check(0,-1) == 1 ){
-                MovePlayer(0, -1);
-                pack.setWater(pack.getWater()-1);
-                CreateMap();
-                CheckHealth();
-                WildernessAttack();
-                CheckFood();
-        }
-        else if ( Check(0,-1) == 2){
-                MovePlayer(0, -1); 
-                CreateMap(); 
-                CheckHealth();
-                pack.setWater(pack.getWater()-1);
-                CheckFood();
-                runLandmark(LandMarkMap[x][y]);
+        if (Check(0, -1) == 1) {
+            MovePlayer(0, -1);
+            pack.setWater(pack.getWater() - 1);
+            CreateMap();
+            CheckHealth();
+            WildernessAttack();
+            CheckFood();
+        } else if (Check(0, -1) == 2) {
+            MovePlayer(0, -1);
+            CreateMap();
+            CheckHealth();
+            pack.setWater(pack.getWater() - 1);
+            CheckFood();
+            runLandmark(LandMarkMap[x][y]);
         }
     }//GEN-LAST:event_leftActionPerformed
 
     private void rightActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightActionPerformed
-        if( Check(0,1) == 1 ){
-                MovePlayer(0, 1);
-                pack.setWater(pack.getWater()-1);
-                CreateMap();
-                CheckHealth();
-                WildernessAttack();
-                CheckFood();
-        }
-        else if ( Check(0,1) == 2){
-                MovePlayer(0, 1);
-                pack.setWater(pack.getWater()-1);
-                CheckFood();
-                CreateMap();
-                CheckHealth();
-                runLandmark(LandMarkMap[x][y]);
+        if (Check(0, 1) == 1) {
+            MovePlayer(0, 1);
+            pack.setWater(pack.getWater() - 1);
+            CreateMap();
+            CheckHealth();
+            WildernessAttack();
+            CheckFood();
+        } else if (Check(0, 1) == 2) {
+            MovePlayer(0, 1);
+            pack.setWater(pack.getWater() - 1);
+            CheckFood();
+            CreateMap();
+            CheckHealth();
+            runLandmark(LandMarkMap[x][y]);
         }
     }//GEN-LAST:event_rightActionPerformed
 
-    
-    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+
+    }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -307,15 +306,14 @@ public class Main extends javax.swing.JFrame {
         });
     }
 
-    
-    public void CreateLandmarks() throws FileNotFoundException{
+    public void CreateLandmarks() throws FileNotFoundException {
         Random rand = new Random();
-        try{
+        try {
             File dirl = new File("res/template1.txt");
             Scanner read = new Scanner(dirl);
             for (int i = 0; i < 30; i++) {
                 String line = read.nextLine();
-                String item= null;
+                String item = null;
                 for (int j = 0; j < 30; j++) {
                     switch (line.charAt(j)) {
                         case '#':
@@ -335,18 +333,19 @@ public class Main extends javax.swing.JFrame {
                             break;
                         default:
                             break;
-                        }
-                    map[i][j]=item;
-                    LandMarkMap[i][j]=item;
+                    }
+                    map[i][j] = item;
+                    LandMarkMap[i][j] = item;
                 }
             }
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
     }
     public String newline = "\n";
+
     public void CreateMap() {
-        
+
         String Food = Integer.toString(pack.getFood());
         String Water = Integer.toString(pack.getWater());
         String Iron = Integer.toString(pack.getIron());
@@ -357,34 +356,34 @@ public class Main extends javax.swing.JFrame {
         String Leather = Integer.toString(pack.getLeather());
         String Wood = Integer.toString(pack.getWood());
         String Medicine = Integer.toString(pack.medicine);
-        
+
         Materials.setText(null);
         Materials.append("Food: " + Food + newline);
         Materials.append("Water: " + Water + newline);
-        
-        if(pack.leather > 0){
+
+        if (pack.leather > 0) {
             Materials.append("Leather: " + Leather + newline);
         }
-        if(pack.wood > 0){
+        if (pack.wood > 0) {
             Materials.append("Wood: " + Wood + newline);
         }
-        if(pack.iron > 0){
+        if (pack.iron > 0) {
             Materials.append("Iron: " + Iron + newline);
         }
-        if(pack.steel > 0){
+        if (pack.steel > 0) {
             Materials.append("Steel: " + Steel + newline);
         }
-        if(pack.medicine > 0){
+        if (pack.medicine > 0) {
             Materials.append("Medicine: " + Medicine + newline);
         }
-        if("1".equals(Sword)){
+        if ("1".equals(Sword)) {
             Materials.append("Weapon: Sword" + newline);
-        }else if ("1".equals(Knife)){
+        } else if ("1".equals(Knife)) {
             Materials.append("Weapon: Knife" + newline);
-        }else if ("1".equals(woodenClub)){
+        } else if ("1".equals(woodenClub)) {
             Materials.append("Weapon: WoodenClub" + newline);
         }
-        
+
         Output.setText(null);
         Output.append(" ");
         for (int i = 0; i < 46; i++) {
@@ -393,7 +392,7 @@ public class Main extends javax.swing.JFrame {
         Output.append(newline);
         for (int i = 0; i < 30; i++) {
             Output.append(" |");
-            for (int j = 0; j < 30 ; j++) {
+            for (int j = 0; j < 30; j++) {
                 Output.append(map[i][j]);
             }
             Output.append(" |" + newline);
@@ -404,27 +403,27 @@ public class Main extends javax.swing.JFrame {
         }
         Output.append("\n");
 
-        map[x][y] = "[@]";
     }
-    
+
     public int check = 0;
-    public void CheckFood(){
-        
-        if(check == 2){
+
+    public void CheckFood() {
+
+        if (check == 2) {
             pack.food--;
             check = 0;
-        }else{
+        } else {
             check++;
         }
     }
-    
-    public void CheckHealth(){
-        if(pack.water == 0){
+
+    public void CheckHealth() {
+        if (pack.water == 0) {
             TextBox.setText(null);
             TextBox.append("You've ran out of water" + newline);
             TextBox.append("It becomes impossible to go on");
-        }else if (pack.water <= -1){
-            map[x][y] =" " + "\u2620" + " ";
+        } else if (pack.water <= -1) {
+            map[x][y] = " " + "\u2620" + " ";
             CreateMap();
             TextBox.setText(null);
             TextBox.append("\n");
@@ -432,16 +431,13 @@ public class Main extends javax.swing.JFrame {
             TextBox.append("\n");
             TextBox.append("GAME OVER");
             //System.exit(0);
-            up.setEnabled(false);
-            down.setEnabled(false);
-            left.setEnabled(false);
-            right.setEnabled(false);
-        }else if (pack.food == 0 ){
+            setAllDisabled();
+        } else if (pack.food == 0) {
             TextBox.setText(null);
             TextBox.append("Youve ran out of food " + newline);
             TextBox.append("it will only take days to starve" + newline);
-        }else if (pack.food < -2){
-            map[x][y] =" " + "\u2620" + " ";
+        } else if (pack.food < -2) {
+            map[x][y] = " " + "\u2620" + " ";
             CreateMap();
             TextBox.setText(null);
             TextBox.append("\n");
@@ -449,110 +445,99 @@ public class Main extends javax.swing.JFrame {
             TextBox.append("\n");
             TextBox.append("GAME OVER");
             //System.exit(0);
-            up.setEnabled(false);
-            down.setEnabled(false);
-            left.setEnabled(false);
-            right.setEnabled(false);
+            setAllDisabled();
         }
     }
-    private ScheduledExecutorService scheduledExecutorService;
-    public void DelayedClear(){
-        
-            
-    }
-        
+
     public int Check(int ex, int why) {
         if ((x + ex) < 0 || (x + ex) > 29 || (y + why) < 0 || (y + why) > 29) {
             return -1;
-        }else if (!"   ".equals(LandMarkMap[x+ex][y+why])){
+        } else if (!"   ".equals(LandMarkMap[x + ex][y + why])) {
             return 2;
-        }else {
+        } else {
             return 1;
         }
     }
-    
+
     public void MovePlayer(int ex, int why) {
         map[x][y] = LandMarkMap[x][y];
 
         x += ex;
         y += why;
 
-        
-        if(on == 7){
+        if (on == 7) {
             on = 1;
         }
-        
+
         switch (on) {
             case 1:
-                map[x][y]=" ò ";
+                map[x][y] = " ò ";
                 on++;
                 break;
             case 2:
-                map[x][y]=" ó ";
+                map[x][y] = " ó ";
                 on++;
                 break;
             case 3:
-                map[x][y]=" ô ";
+                map[x][y] = " ô ";
                 on++;
                 break;
             case 4:
-                map[x][y]=" õ ";
+                map[x][y] = " õ ";
                 on++;
                 break;
             case 5:
-                map[x][y]=" ö ";
+                map[x][y] = " ö ";
                 on++;
                 break;
             case 6:
-                map[x][y]=" ð ";
+                map[x][y] = " ð ";
                 on++;
                 break;
             default:
                 break;
         }
-        
+
     }
-    
-        public void WildernessAttack(){
-        
-        
+
+    public void WildernessAttack() {
         //giving a 20% chance of getting attacked every time you make a step
         //type 1
-        if(x >= 10 && x <= 20 && y >= 10 && y <= 20){
-            GenerateAttack(20,0,"W");
+        if (x >= 10 && x <= 20 && y >= 10 && y <= 20) {
+            GenerateAttack(15, 0, "W");
         }
         //type 2 
-        if ( (x > 5 && x < 10) && (y > 5  && y < 25) ){
-            GenerateAttack(20,3,"W");
+        if ((x > 5 && x < 10) && (y > 5 && y < 25)) {
+            GenerateAttack(15, 3, "W");
         }
-        if( x > 20 && x < 25 && (y > 5  && y < 25)){
-            GenerateAttack(20,3,"W");
+        if (x > 20 && x < 25 && (y > 5 && y < 25)) {
+            GenerateAttack(15, 3, "W");
         }
-        if(y > 5 && y < 10 && (x > 5 && x < 25) ){
-            GenerateAttack(20,3,"W");
+        if (y > 5 && y < 10 && (x > 5 && x < 25)) {
+            GenerateAttack(15, 3, "W");
         }
-        if(y > 20 && y < 25 && (x > 5 && x < 25) ){
-            GenerateAttack(20,3,"W");
+        if (y > 20 && y < 25 && (x > 5 && x < 25)) {
+            GenerateAttack(15, 3, "W");
         }
         //type 2 
-        
+
         //type 3
-        if(x >= 0 && x <= 5 && y >= 0 && y < 30 ){
-            GenerateAttack(20,5,"W");
-        }        
-        if(x >= 25 && x < 30 && y >= 0 && y < 30){
-            GenerateAttack(20,5,"W");
-        }        
-        if (y >= 0 && y <= 5 && x >= 0 && x < 30 ){
-            GenerateAttack(20,5,"W");
-        }        
-        if(y >= 25 & y < 30 && x >= 0 && x < 30){
-            GenerateAttack(20,5,"W");
+        if (x >= 0 && x <= 5 && y >= 0 && y < 30) {
+            GenerateAttack(15, 5, "W");
+        }
+        if (x >= 25 && x < 30 && y >= 0 && y < 30) {
+            GenerateAttack(15, 5, "W");
+        }
+        if (y >= 0 && y <= 5 && x >= 0 && x < 30) {
+            GenerateAttack(15, 5, "W");
+        }
+        if (y >= 25 & y < 30 && x >= 0 && x < 30) {
+            GenerateAttack(15, 5, "W");
         }
         //type 3 
     }
-        
-    public void GenerateAttack(int chance, int difficulty, String type)  {
+
+    public void GenerateAttack(int chance, int difficulty, String type) {
         // the number is the paramater that the number out of 100 needs to meet
         // e.g. chance = 2 means that the number needs to be 2 or lower (or 2% chance or getting attacked)
         // in order for the attacksequence to run 
@@ -560,65 +545,65 @@ public class Main extends javax.swing.JFrame {
         Random rand = new Random();
         int isAttack = rand.nextInt(100);
         isAttack++;
-        if(isAttack <= chance){
-            AttackSequence(difficulty,type);
+        if (isAttack <= chance) {
+            AttackSequence(difficulty, type);
         }
     }
-        public void AttackSequence(int difficulty, String type){
-       // 0 = type 1 wilderness
-       // 1 = type 1 cave or house  
-       // 2 = type 2 cave or house 
-       // 3 = type 2 wilderness
-       // 4 = type 3 cave or house
-       // 5 = type 3 wilderness
-       // 6 = City 
-        TextBox.setText(null);
-        TextBox.append(newline + "You've been attacked but you won by default because i havent finished this yet");
-        
-       
+
+    public void AttackSequence(int difficulty, String type) {
+        // 0 = type 1 wilderness
+        // 1 = type 1 cave or house  
+        // 2 = type 2 cave or house 
+        // 3 = type 2 wilderness
+        // 4 = type 3 cave or house
+        // 5 = type 3 wilderness
+        // 6 = City 
+        GenerateAttack go = new GenerateAttack();
+        go.setType(difficulty);
+        go.show();
+
     }
-        
-    public void runLandmark(String entity){
+
+    public void runLandmark(String entity) {
         //checking where the landmark is on the map
-        int type =0;
-        
+        int type = 0;
+
         //dont try to judge this was the only way i could carefully do it without making mistakes
-        
         //type 1
-        if(x >= 10 && x <= 20 && y >= 10 && y <= 20){
+        if (x >= 10 && x <= 20 && y >= 10 && y <= 20) {
             type = 1;
         }
         //type 2 
-        if ( (x > 5 && x < 10) && (y > 5  && y < 25) ){
+        if ((x > 5 && x < 10) && (y > 5 && y < 25)) {
             type = 2;
         }
-        if( x > 20 && x < 25 && (y > 5  && y < 25)){
+        if (x > 20 && x < 25 && (y > 5 && y < 25)) {
             type = 2;
         }
-        if(y > 5 && y < 10 && (x > 5 && x < 25) ){
-            type =2;
+        if (y > 5 && y < 10 && (x > 5 && x < 25)) {
+            type = 2;
         }
-        if(y > 20 && y < 25 && (x > 5 && x < 25) ){
-            type =2;
+        if (y > 20 && y < 25 && (x > 5 && x < 25)) {
+            type = 2;
         }
         //type 2 
-        
+
         //type 3
-        if(x >= 0 && x <= 5 && y >= 0 && y < 30 ){
+        if (x >= 0 && x <= 5 && y >= 0 && y < 30) {
             type = 3;
-        }        
-        if(x >= 25 && x < 30 && y >= 0 && y < 30){
+        }
+        if (x >= 25 && x < 30 && y >= 0 && y < 30) {
             type = 3;
-        }        
-        if (y >= 0 && y <= 5 && x >= 0 && x < 30 ){
+        }
+        if (y >= 0 && y <= 5 && x >= 0 && x < 30) {
             type = 3;
-        }        
-        if(y >= 25 & y < 30 && x >= 0 && x < 30){
-            type =3;
+        }
+        if (y >= 25 & y < 30 && x >= 0 && x < 30) {
+            type = 3;
         }
         //type 3
 
-        switch (entity){
+        switch (entity) {
             case "|C|":
                 Cave(type);
                 break;
@@ -628,7 +613,7 @@ public class Main extends javax.swing.JFrame {
             case "|O|":
                 City();
                 break;
-            case" A ":
+            case " A ":
                 Home();
                 break;
             case " C ":
@@ -644,30 +629,74 @@ public class Main extends javax.swing.JFrame {
                 TextBox.append("lmao youll never see this ☻");
         }
     }
-    public void Home(){
-        
-        
+
+    public void Home() {
+        this.setVisible(false);
         Home home = new Home();
         home.show();
-        
     }
-    
-    public void Cave(int type){
+
+    public void setAllEnabled() {
+        up.setEnabled(true);
+        down.setEnabled(true);
+        left.setEnabled(true);
+        right.setEnabled(true);
+    }
+
+    public void setAllDisabled() {
+        up.setEnabled(false);
+        down.setEnabled(false);
+        left.setEnabled(false);
+        right.setEnabled(false);
+    }
+
+    public void Cave(int type) {
         TextBox.setText(null);
-        TextBox.append(newline + "This is a cave");
+        Cave cave = new Cave();
+        int difficulty = 0;
+        switch (type) {
+            case 1:
+                difficulty = 1;
+                break;
+            case 2:
+                difficulty = 2;
+                break;
+            case 3:
+                difficulty = 4;
+                break;
+            default:
+                break;
+        }
+        cave.setDiff(difficulty);
+        cave.show();
     }
-    
-    public void House(int type){
-        TextBox.setText(null);
-        TextBox.append(newline + "this is a house");
+
+    public void House(int type) {
+        House house = new House();
+        int difficulty = 0;
+        switch (type) {
+            case 1:
+                difficulty = 1;
+                break;
+            case 2:
+                difficulty = 2;
+                break;
+            case 3:
+                difficulty = 4;
+                break;
+            default:
+                break;
+        }
+        house.setDiff(difficulty);
+        house.show();
     }
-    
-    public void City(){
+
+    public void City() {
         TextBox.setText(null);
         TextBox.append(newline + "This is a city");
     }
-    
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Materials;
     private javax.swing.JTextArea Output;
