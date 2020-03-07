@@ -5,6 +5,8 @@
  */
 package text_adventure_remastered;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -43,11 +45,16 @@ public class Menu extends javax.swing.JFrame {
         jToggleButton3 = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel1.setText("Escape");
 
-        jToggleButton1.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 18)); // NOI18N
+        jToggleButton1.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
         jToggleButton1.setText("How to play");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,7 +62,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton2.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 18)); // NOI18N
+        jToggleButton2.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
         jToggleButton2.setText("New game");
         jToggleButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,7 +70,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton3.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 18)); // NOI18N
+        jToggleButton3.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 12)); // NOI18N
         jToggleButton3.setText("Continue");
         jToggleButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +102,7 @@ public class Menu extends javax.swing.JFrame {
                 .addComponent(jToggleButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jToggleButton1)
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
@@ -140,6 +147,11 @@ public class Menu extends javax.swing.JFrame {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jToggleButton1ActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+    }//GEN-LAST:event_formWindowActivated
 
     
     

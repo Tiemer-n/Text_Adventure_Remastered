@@ -1,12 +1,16 @@
 
 package text_adventure_remastered;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.Timer;
 
 public class Main extends javax.swing.JFrame {
 
@@ -24,13 +28,11 @@ public class Main extends javax.swing.JFrame {
         initComponents();
     }
     
-
-
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
         up = new javax.swing.JToggleButton();
         down = new javax.swing.JToggleButton();
         right = new javax.swing.JToggleButton();
@@ -39,6 +41,13 @@ public class Main extends javax.swing.JFrame {
         Output = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
         Materials = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TextBox = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+
+        jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -88,6 +97,18 @@ public class Main extends javax.swing.JFrame {
         Materials.setRows(5);
         jScrollPane2.setViewportView(Materials);
 
+        TextBox.setColumns(20);
+        TextBox.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 12)); // NOI18N
+        TextBox.setRows(5);
+        jScrollPane4.setViewportView(TextBox);
+
+        jLabel1.setText("Materials:");
+
+        jLabel2.setText("Message Box:");
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel3.setText("Map");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,29 +116,45 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(56, 56, 56)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(71, 71, 71)
+                                .addGap(53, 53, 53)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(down, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(up, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addComponent(left, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(50, 50, 50)
                                 .addComponent(right, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addGap(53, 53, 53))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
+                        .addGap(67, 67, 67)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(up, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -125,19 +162,26 @@ public class Main extends javax.swing.JFrame {
                             .addComponent(left, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(down, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
-                .addContainerGap())
+                        .addGap(145, 145, 145))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(58, 58, 58)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(39, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    static Timer timer;
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         try {
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+            TextBox.setLineWrap(true);
             CreateLandmarks();
             CreateMap();
             map[x][y] = " ð ";
@@ -152,10 +196,10 @@ public class Main extends javax.swing.JFrame {
         if (Check(-1, 0) == 1) {
                 MovePlayer(-1, 0);
                 pack.setWater(pack.getWater()-1);
-                CheckFood();
                 CreateMap();
                 CheckHealth();
                 WildernessAttack();
+                CheckFood();
         }
         else if (Check(-1,0) == 2){
                 MovePlayer(-1, 0);   
@@ -173,10 +217,10 @@ public class Main extends javax.swing.JFrame {
         if( Check(1,0) == 1 ){
                 MovePlayer(1, 0);
                 pack.setWater(pack.getWater()-1);
-                CheckFood();
-                CreateMap();  
+                CreateMap();
                 CheckHealth();
                 WildernessAttack();
+                CheckFood();
         }
         else if ( Check(1,0) == 2){
                 MovePlayer(1, 0);
@@ -194,10 +238,10 @@ public class Main extends javax.swing.JFrame {
         if( Check(0,-1) == 1 ){
                 MovePlayer(0, -1);
                 pack.setWater(pack.getWater()-1);
-                CheckFood();
                 CreateMap();
                 CheckHealth();
                 WildernessAttack();
+                CheckFood();
         }
         else if ( Check(0,-1) == 2){
                 MovePlayer(0, -1); 
@@ -213,10 +257,10 @@ public class Main extends javax.swing.JFrame {
         if( Check(0,1) == 1 ){
                 MovePlayer(0, 1);
                 pack.setWater(pack.getWater()-1);
-                CheckFood();
                 CreateMap();
                 CheckHealth();
                 WildernessAttack();
+                CheckFood();
         }
         else if ( Check(0,1) == 2){
                 MovePlayer(0, 1);
@@ -342,17 +386,19 @@ public class Main extends javax.swing.JFrame {
         }
         
         Output.setText(null);
-        
+        Output.append(" ");
         for (int i = 0; i < 46; i++) {
             Output.append("__");
         }
         Output.append(newline);
         for (int i = 0; i < 30; i++) {
+            Output.append(" |");
             for (int j = 0; j < 30 ; j++) {
                 Output.append(map[i][j]);
             }
             Output.append(" |" + newline);
         }
+        Output.append(" ");
         for (int i = 0; i < 27; i++) {
             Output.append("‾‾‾‾");
         }
@@ -374,36 +420,45 @@ public class Main extends javax.swing.JFrame {
     
     public void CheckHealth(){
         if(pack.water == 0){
-            Output.append("You've ran out of water" + newline);
-            Output.append("It becomes impossible to go on" + newline);
+            TextBox.setText(null);
+            TextBox.append("You've ran out of water" + newline);
+            TextBox.append("It becomes impossible to go on");
         }else if (pack.water <= -1){
             map[x][y] =" " + "\u2620" + " ";
             CreateMap();
-            Output.append("\n");
-            Output.append("You ran out of water and have died of thirst" + newline);
-            Output.append("\n");
-            Output.append("GAME OVER");
+            TextBox.setText(null);
+            TextBox.append("\n");
+            TextBox.append("You ran out of water and have died of thirst" + newline);
+            TextBox.append("\n");
+            TextBox.append("GAME OVER");
             //System.exit(0);
             up.setEnabled(false);
             down.setEnabled(false);
             left.setEnabled(false);
             right.setEnabled(false);
         }else if (pack.food == 0 ){
-            Output.append("Youve ran out of food " + newline);
-            Output.append("it will only take days to starve" + newline);
+            TextBox.setText(null);
+            TextBox.append("Youve ran out of food " + newline);
+            TextBox.append("it will only take days to starve" + newline);
         }else if (pack.food < -2){
             map[x][y] =" " + "\u2620" + " ";
             CreateMap();
-            Output.append("\n");
-            Output.append("You ran out of food and have starved to death" + newline);
-            Output.append("\n");
-            Output.append("GAME OVER");
+            TextBox.setText(null);
+            TextBox.append("\n");
+            TextBox.append("You ran out of food and have starved to death" + newline);
+            TextBox.append("\n");
+            TextBox.append("GAME OVER");
             //System.exit(0);
             up.setEnabled(false);
             down.setEnabled(false);
             left.setEnabled(false);
             right.setEnabled(false);
         }
+    }
+    private ScheduledExecutorService scheduledExecutorService;
+    public void DelayedClear(){
+        
+            
     }
         
     public int Check(int ex, int why) {
@@ -517,8 +572,9 @@ public class Main extends javax.swing.JFrame {
        // 4 = type 3 cave or house
        // 5 = type 3 wilderness
        // 6 = City 
-
-        Output.append(newline + "You've been attacked but you won by default because i havent finished this yet");
+        TextBox.setText(null);
+        TextBox.append(newline + "You've been attacked but you won by default because i havent finished this yet");
+        
        
     }
         
@@ -576,38 +632,54 @@ public class Main extends javax.swing.JFrame {
                 Home();
                 break;
             case " C ":
-                System.out.println("This cave has already been explored");
+                TextBox.setText(null);
+                TextBox.append("This cave has already been explored");
                 break;
             case " H ":
-                System.out.println("This house has already been explored");
+                TextBox.setText(null);
+                TextBox.append("This house has already been explored");
                 break;
             default:
-                System.out.println("lmao youll never see this ☻");
+                TextBox.setText(null);
+                TextBox.append("lmao youll never see this ☻");
         }
     }
     public void Home(){
-        Output.append(newline + "You are in your home");
+        
+        
+        Home home = new Home();
+        home.show();
+        
     }
     
     public void Cave(int type){
-        Output.append(newline + "You are in a cave");
+        TextBox.setText(null);
+        TextBox.append(newline + "This is a cave");
     }
     
     public void House(int type){
-        Output.append(newline + "You are in a house");
+        TextBox.setText(null);
+        TextBox.append(newline + "this is a house");
     }
     
     public void City(){
-        Output.append(newline + "You are in a city");
+        TextBox.setText(null);
+        TextBox.append(newline + "This is a city");
     }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea Materials;
     private javax.swing.JTextArea Output;
+    private javax.swing.JTextArea TextBox;
     private javax.swing.JToggleButton down;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToggleButton left;
     private javax.swing.JToggleButton right;
     private javax.swing.JToggleButton up;
