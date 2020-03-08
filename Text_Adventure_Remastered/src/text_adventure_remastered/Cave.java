@@ -5,6 +5,9 @@
  */
 package text_adventure_remastered;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author Isaac
@@ -96,6 +99,8 @@ public class Cave extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
         TextBox.setText(null);
         TextBox.append("You are standing by the cave entrance");
     }//GEN-LAST:event_formWindowActivated

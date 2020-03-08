@@ -10,10 +10,6 @@ package text_adventure_remastered;
  * @author Isaac
  */
 public class Text_Adventure_Remastered {
-
-    
-    
-    
     
     public static void main(String[] args) {
         Menu menu = new Menu();
